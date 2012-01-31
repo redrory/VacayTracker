@@ -15,19 +15,15 @@ Vacaytracker::Application.configure do
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
-  # If you have no front-end server that supports something like X-Sendfile,
-  # just comment this out and Rails will serve the files
+  # Compress JavaScripts and CSS
+config.assets.compress = true
 
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
+# Don't fallback to assets pipeline if a precompiled asset is missed
+config.assets.compile = false
 
-  # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
-
-  # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
-
-  # Disable Rails's static asset server
+# Generate digests for assets URLs
+config.assets.digest = true  
+    
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
 
