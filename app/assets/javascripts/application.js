@@ -8,24 +8,34 @@ $(function() {
 	$( '#employee_dob' ).datepicker();
 
 	$( '#vacay_dateFrom' ).datepicker({ dateFormat: 'yy/mm/dd' });
-	$( '#vacay_dateUntil' ).datepicker({ dateFormat: 'yy/mm/dd' });
-	console.log('hello there');
 
-	jQuery('[id = "vacay_submit"]').click(function(){
-		console.log('collect var');
-		var df = jQuery('#vacay_dateFrom').val();
-     	var du = jQuery("#vacay_dateUntil").val();
+	$( '#vacay_dateUntil' ).datepicker({ dateFormat: 'yy/mm/dd' });
+		console.log('Date picker loaded');
+
+		$('[name = "vacay[dateFrom]"').click(function(){
+			alert("Vacation datafrom selected");
+		});
+
+
+	$('[name = "commit"]').click(function(){
+
+		console.log('inside vacay_submit');
+			
+			var df = $('#vacay_dateFrom').val();
+     	var du = $("#vacay_dateUntil").val();
 
      	var oneDay = 24*60*60*1000;
      	var firstDate = new Date(df);
      	var secondDate = new Date(du);
 
      	var diffDays = Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay));
-		alert('Max Sum '+ diffDays );
+			alert('Vacation days wanted'+ diffDays );
 		//jQuery.post(diffDays);
 
   		//jQuery.('name=vacay_sumVacay').val(diffDays);
-  		jQuery("[id='vacay_sumVacay']").val(diffDays);
+
+  		// this was automatically posting the sumVacay value
+  		$("[id='vacay_sumVacay']").val(diffDays);
 
 
 	});

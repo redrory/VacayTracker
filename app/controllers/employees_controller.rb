@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
 
     #@employee = Employee.find_by_user_id(params:[id])
     @employee = Employee.find(params[:vacay][:employee_id])
-    @employee.update_attributes(:vacayUsed => params[:vacay][:sumVacay])
+    @employee.update_attributes(:vacayUsed => @found = (params[:vacay][:sumVacay].to_i) + (params[:vacay][:brought_forward].to_i))
 
     #Object.update_attributes(:field1 => "value", :field2 => "value2", :field3 => "value3")
     #@cust = Customer.new(:firstName => params[:firstName], :lastName => params[:lastName])
