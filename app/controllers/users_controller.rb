@@ -39,6 +39,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       @title = "Sign up"
+      @plan = Plan.all
       render 'new'
     end
   end

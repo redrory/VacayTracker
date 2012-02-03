@@ -5,7 +5,7 @@
 
 $(function() { 
 
-	$( '#employee_dob' ).datepicker();
+	//$( '#employee_dob' ).datepicker();
 
 	$( '#vacay_dateFrom' ).datepicker({ dateFormat: 'yy/mm/dd' });
 
