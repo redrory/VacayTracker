@@ -3,133 +3,143 @@
 	<legend>Prompt me when </legend>	
 	<!-- Variables-->
 	<%=
-		@user.name
-		@emName = Array.new 
-		@emNameAnni = Array.new
-		@emNameAnniM = Array.new
-		@emNameAnni5 = Array.new
-		@emNameAnni5w = Array.new
-		@emNameAnni5m = Array.new
-		@emNameAnni10 = Array.new
-		@emNameAnni10m = Array.new
-		@emNameAnni10w = Array.new
-		@emNameSick = Array.new
-		@emNameAnniw = Array.new
+	@user.name
+	@emName = Array.new 
+	@emNameAnni = Array.new
+	@emNameAnniM = Array.new
+	@emNameAnni5 = Array.new
+	@emNameAnni5w = Array.new
+	@emNameAnni5m = Array.new
+	@emNameAnni10 = Array.new
+	@emNameAnni10m = Array.new
+	@emNameAnni10w = Array.new
+	@emNameSick = Array.new
+	@emNameAnniw = Array.new
 	%>
-	<% @employees.each do |employ|%>
-		<!-- Set DAY OF Prompt-->
-		<ol>
-		<!-- 5 year anniversary today  - Works  -->	
-		<% if Date.today.to_s == (employ.doe + 5.year).to_s  %>
 
-			<%= "First year anniversary today " %>
-			<% 
-			@emNameAnni5 = @emNameAnni5.push(employ.name) 
-			@emailValueAnni5 = "5AnniPrompt"
-			%>
+	<% @employees.each do |employ|%>
+		<!-- Set DAY OF Prompt-->	
+		<!-- 5 year anniversary today  - Works  -->	
+
+		<ul>
+			<h1><li><%= employ.name %></li></h1>
+		</ul>
+		
+
+		<ol>
+		<% if Date.today.to_s == (employ.doe + 5.year).to_s  %>
+			<li><b>"Celebrating 5 year anniversary today "</b> </li>
+				<% 
+					@emNameAnni5 = @emNameAnni5.push(employ.name) 
+					@emailValueAnni5 = "5AnniPrompt"
+				%>
 
 			<!-- 10 year anniversary today  - Works  -->
 			<% elsif Date.today.to_s == (employ.doe + 10.year).to_s  %>
-				<%=  "10 year anniversary today " + employ.name %>
+				<li><b>"10 year anniversary today"</b></li>
 				<% 
-				@emNameAnni10 = @emNameAnni10.push(employ.name) 
-				@emailValueAnni10 = "10AnniPrompt"
+					@emNameAnni10 = @emNameAnni10.push(employ.name) 
+					@emailValueAnni10 = "10AnniPrompt"
 				%>
 
 				<!-- Any year anniversary today - Works   -->
 			<% elsif Time.now.month == employ.doe.month && Time.now.day == employ.doe.day && Time.now.year != employ.doe.year  %>
-				<%=  "Match " + employ.name %>
+				 <li><b>"Celebrating anniversary today"</b> </li>
 				<% 
-				@emNameAnni = @emNameAnni.push(employ.name) 
-				@emailValueAnni = "AnniPrompt"
+					@emNameAnni = @emNameAnni.push(employ.name) 
+					@emailValueAnni = "AnniPrompt"
 				%>
 
-				
 				<% else %>
-					<li><%=  "No Employee Anniversaries today"+ employ.name %></li>
+					<li>"No Anniversary today"</li>
 				<% end %>
 
 		<!-- Set one MONTH prompt  -->	
 		<% if (Date.today + 1.month).to_s == (employ.doe + 5.year ).to_s %>
 
 			<!-- One Month Prompt before 5 Anniversary - Works   -->
-			<%= " One Month Prompt before 5 Anniversary" %>
+			<li><b>"Celebrating 5 year anniversary in one month"</b></li>
 			<% 
-			@emNameAnni5m = @emNameAnni5m.push(employ.name) 
-			@emailValueAnni5m = "5mAnniPrompt"
+				@emNameAnni5m = @emNameAnni5m.push(employ.name) 
+				@emailValueAnni5m = "5mAnniPrompt"
 			%>
 
-			<% elsif (Date.today + 1.month).to_s == (employ.doe + 10.year ).to_s %>
-				<%=  "One Month Prompt before 10 Anniversary " + employ.name %>
-				<% 
+		<% elsif (Date.today + 1.month).to_s == (employ.doe + 10.year ).to_s %>
+			<li><b>"Celebrating 10 year anniversary in one month"</b></li>
+			<% 
 				@emNameAnni10m = @emNameAnni10m.push(employ.name) 
 				@emailValueAnni10m = "10mAnniPrompt"
-				%>
+			%>
 
-			<% elsif (Date.today.month + 1).to_s == (employ.doe.month).to_s && (Date.today.day).to_s == (employ.doe.day).to_s && (Date.today.year) != (employ.doe.year) %>
-				<%=  "One Month Prompt before ANY OTHER Anniversary " + employ.name %>
-				<% 
+		<% elsif (Date.today.month + 1).to_s == (employ.doe.month).to_s && (Date.today.day).to_s == (employ.doe.day).to_s && (Date.today.year) != (employ.doe.year) %>
+			<li><b>"Celebrating anniversary in one month"</b></li>
+			<% 
 				@emNameAnniM = @emNameAnniM.push(employ.name) 
 				@emailValueAnniM = "AnniPromptM"
-				%>
-
-				
-				<% else %>
-					<li><%=  "No employees with anniversaries in a month "+ employ.name %></li>
-				<% end %>
+			%>
+		<% else %>
+				<li>"No Anniversary in a month"</li>
+		<% end %>
 
 		<!-- Set one WEEK prompt one year out -->	
 		<% if (Date.today + 1.week).to_s == (employ.doe + 1.year ).to_s   %>
+			
+			<li><b>"Celebrating 1 year anniversary in one week"</b></li>
 			<% 
-			@emNameAnniw = @emNameAnniw.push(employ.name) 
-			@emailValueAnniw = "wAnniPrompt"
+				@emNameAnniw = @emNameAnniw.push(employ.name) 
+				@emailValueAnniw = "wAnniPrompt"
 			%>
 
-			<% elsif (Date.today + 1.week).to_s == (employ.doe + 5.years ).to_s %>
+		<% elsif (Date.today + 1.week).to_s == (employ.doe + 5.years ).to_s %>
+			<li><b>"Celebrating 5 year anniversary in one week"</b></li>	
 				<% 
-				@emNameAnni5w = @emNameAnni5w.push(employ.name) 
-				@emailValueAnni5w = "5wAnniPrompt"
+					@emNameAnni5w = @emNameAnni5w.push(employ.name) 
+					@emailValueAnni5w = "5wAnniPrompt"
 				%>
 
-			<% elsif (Date.today + 1.week).to_s == (employ.doe + 10.years ).to_s %>
+		<% elsif (Date.today + 1.week).to_s == (employ.doe + 10.years ).to_s %>
+				<li><b>"Celebrating 10 year anniversary in one week"</b></li>	
 				<% 
-				@emNameAnni10w = @emNameAnni10w.push(employ.name) 
-				@emailValueAnni10w = "10wAnniPrompt"
+					@emNameAnni10w = @emNameAnni10w.push(employ.name) 
+					@emailValueAnni10w = "10wAnniPrompt"
 				%>
 
-				<% else %>
-					<li><%=  " No employees with anniversaries in a week "+ employ.name %></li>
-				<% end %>		
+		<% else %>
+				<li>"No Anniversary in a week"</li>
+		<% end %>		
 			
 				
 		<!-- Set Max Vacation prompt-->
-			<li>
-			Info for <%= employ.name %> Total Vacation Days = <%= employ.vacayTotal %>
+
+			Total Vacation Days = <%= employ.vacayTotal %>
 			Vacation Days Used =  <%= employ.vacayUsed %>
-				<% if employ.vacayUsed >= employ.vacayTotal 
+
+			<% if employ.vacayUsed >= employ.vacayTotal 
 					@emName = @emName.push(employ.name)
-					
-					%>
-				<br><b> Max Vacay Prompt Sent</b>
-				<% @emailValueVacay = "vacayPrompt"%>
-				<% else %>
-					<br><b> Max Vacay Prompt NOT Sent </b>
-				<% end %>
+			%>
+					<li><b>"Max Vacay Prompt Sent"</b></li>
+					<% @emailValueVacay = "vacayPrompt"%>
+			<% else %>
+					<li>"Max Vacay Prompt Not Sent"</li>
+			<% end %>
 				
 		<!-- Set Max Sick day prompt-->
 			<li>
-			Info for <%= employ.name %> Total Sick Days = <%= employ.sickTotal %>
+			Total Sick Days = <%= employ.sickTotal %>
 			Sick Days Used =  <%= employ.sickUsed %>
+			
 			<% if employ.sickUsed >= employ.sickTotal
 				@emNameSick = @emNameSick.push(employ.name)	
 				 %>
-				<br><u> Max Sick Day Prompt Sent</u>
+				
+				<li><b>"Max Sick Prompt Sent"</b></li>
 				<% @emailSick = "sickPrompt" %>
-				<% else %>
-				<br><u> Max Sick Day Prompt NOT Sent </u>
-				<% end %>
-				<% end %>
-			</ol>
+			<% else %>
+				<li>"Max Sick Not Prompt Sent"</li>
+		</ol>
+			<% end %>
+		<% end %> <!-- End employ block -->
+		
 		
 		<% @prompts.each do |prompt|%>
 
