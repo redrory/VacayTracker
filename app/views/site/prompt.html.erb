@@ -140,27 +140,24 @@
 			<% end %>
 		<% end %> <!-- End employ block -->
 		
-		
+		<h2>Prompts</h2>
 		<% @prompts.each do |prompt|%>
-
-		<p><b>User ID</b> <%= prompt.user_id  %> </p>
-			<%= @user.name %>One Year Prompt : 
-
-			<%= @weekPromptValue = prompt.weekPrompt %> </br>
-			<%= @monthPromptValue = prompt.monthPrompt %> </br>
-			<%= @dayPromptValue = prompt.dayPrompt %> </br>
-			<%= @maxVacayPromptValue = prompt.maxVacay %> </br>
-			<%= @maxSickPromptValue = prompt.maxSick %> </br>	
-				<% end %>
-		
-	
-		
+			<li>
+			ID <%= prompt.user_id %>
+			Weekly Prompt <%= @weekPromptValue = prompt.weekPrompt %> </br>
+			Montly Prompt <%= @monthPromptValue = prompt.monthPrompt %> </br>
+			Dayly Prompt <%= @dayPromptValue = prompt.dayPrompt %> </br>
+			Max Vacay Prompt<%= @maxVacayPromptValue = prompt.maxVacay %> </br>
+			Max Sick Prompt <%= @maxSickPromptValue = prompt.maxSick %> </br>	
+			</li>
+		<% end %>
+			
 			<!-- Send anniversary email -->
 			<% if @emailValueAnni == "AnniPrompt" && @dayPromptValue == "true"  %>
 			<% EmployeeMail.prompt_email(@user,@emNameAnni).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Day Prompt - Will not send"
+				<li>"Day Prompt Email Not Sent"</li>
 			<%end %>
 
 			<!-- Send one WEEK out email -->
@@ -168,7 +165,7 @@
 			<% EmployeeMail.prompt_w_email(@user,@emNameAnniM).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Week Prompt - Will not send"
+				<li>"Weekly Prompt Email Not Sent"</li>
 			<%end %>
 
 			<!-- Send "ANY year" (One Month out) anniversary email -->
@@ -176,7 +173,7 @@
 			<% EmployeeMail.prompt_ANYm_email(@user,@emNameAnniM).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Month Prompt - Will not send"
+				<li>"Montly Prompt Email Not Sent"</li>	
 			<%end %>
 
 
@@ -185,7 +182,7 @@
 			<% EmployeeMail.prompt_5_email(@user,@emNameAnni5).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Day 5 year Prompt - Will not send"
+				<li>"Today 5 year Prompt Email Not Sent"</li>	
 			<%end %>
 
 			<!-- Send "5 year" (One WEEK out) anniversary email -->
@@ -193,15 +190,16 @@
 			<% EmployeeMail.prompt_5w_email(@user,@emNameAnni5w).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Week 5 year Prompt - Will not send"
+				<li>"In a Week 5 year Prompt Email Not Sent"</li>	
 			<%end %>
 
 			<!-- Send "5 year" (One Month out) anniversary email -->
 			<% if @emailValueAnni5m == "5mAnniPrompt" && @monthPromptValue == "true"  %>
-			<% EmployeeMail.prompt_5m_email(@user,@emNameAnni5m).deliver %>
-				Email sent <%= @all_user.all %>
+			<%# EmployeeMail.prompt_5m_email(@user,@emNameAnni5m).deliver %>
+			<li><b>"In a month 5 year Prompt Email Sent"</b></li>	
+			<%#= @all_user.all %>
 				<% else %>
-				<p>"||Month 5 year Prompt -  Will not send"
+				<li>"In a month 5 year Prompt Email Not Sent"</li>	
 			<%end %>
 
 			<!-- Send "10 year" anniversary email -->
@@ -209,7 +207,7 @@
 			<% EmployeeMail.prompt_10_email(@user,@emNameAnni10).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Day 10 year Prompt - Will not send"
+				<li>"Today 10 year Prompt Email Not Sent"</li>	
 			<%end %>
 
 			<!-- Send "10 year" (One week out) anniversary email -->
@@ -217,15 +215,15 @@
 			<% EmployeeMail.prompt_10w_email(@user,@emNameAnni10w).deliver %>
 				Email sent <%= @all_user.all %>
 				<% else %>
-				<p>"|| Week 10 year Prompt - Will not send"
+				<li>"In a week 10 year Prompt Email Not Sent"</li>	
 			<%end %>
 
 			<!-- Send "10 year" (One month out) anniversary email -->
 			<% if @emailValueAnni10m == "10mAnniPrompt" && @monthPromptValue == "true"  %>
 			<% EmployeeMail.prompt_10m_email(@user,@emNameAnni10m).deliver %>
-				Email sent <%= @all_user.all %>
+				<b>In a month 10 year Prompt Email Sent</b><%#= @all_user.all %>
 				<% else %>
-				<p>"|| Month 10 year Prompt - Will not send"
+				<li>"In a month 10 year Prompt Email Not Sent"</li>
 			<%end %>
 			
 			   <!-- Send max Vacay email -->
@@ -238,9 +236,9 @@
 				
 		<!-- Send max Sick email -->
 		<% if @emailSick.nil? == true %>
-			<b><u>"Sick Not sent"</b><u/>
+				<u>"Sick Not sent"<u/>
 		<% elsif @emailSick = "sickPrompt" && @maxSickPromptValue == "true" %>
-			<p><b><u>"|| Max Sick Email has been sent to HR"</b></u>
+			<p><u>"|| Max Sick Email has been sent to HR"</u>
 			<% EmployeeMail.prompt_max_sick_email(@user,@emNameSick).deliver %>
 			<%end %>
 			
