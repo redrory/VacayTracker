@@ -37,7 +37,7 @@
     <%= v.hidden_field :brought_forward, :value => @employee.vacayUsed%>
     <%= v.hidden_field :employee_id, :value => @employee.id%>
     <%= v.hidden_field :user_id, :value => @user.id%>
-    <%= v.button :submit %>
+    <%= v.submit 'Request Vacation', :id => "request_vacay_submit" %>
   </div>
 <% end %>
 

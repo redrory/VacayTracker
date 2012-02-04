@@ -15,8 +15,6 @@ class UsersController < ApplicationController
       @employeesVacay = @user.employees.paginate(:page => params[:page], :per_page => 4,:order =>'"vacayUsed" desc')
       @employeesSick = @user.employees.paginate(:page => params[:page], :per_page => 4,:order =>'"sickUsed" desc')
       @employeesDOE = @user.employees.paginate(:page => params[:page], :per_page => 4,:order =>'"doe" asc')
-
-
   end
     
   def new
@@ -67,11 +65,9 @@ class UsersController < ApplicationController
        begin
          @prompt = Prompt.find_by_user_id(@user)
          @prompt.update_attributes(params[:prompt])
-          flash[:success] = "Update your prompt below"
        rescue
          @prompt = Prompt.new(params[:prompt])
          @prompt.save
-          flash[:success] = "Save you Prompt below"
        ensure 
 
        end
@@ -82,7 +78,7 @@ class UsersController < ApplicationController
     begin
       @prompt = Prompt.find_by_user_id(@user)
       @prompt.update_attributes(params[:prompt])
-       flash[:success] = "Prompt Updated"
+       flash[:success] = "Prompt Should be Updated"
     rescue
       @prompt = Prompt.new(params[:prompt])
       @prompt.save

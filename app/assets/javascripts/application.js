@@ -17,9 +17,7 @@ $(function() {
 		});
 
 
-	$('[name = "commit"]').click(function(){
-
-		console.log('inside vacay_submit');
+	$('[id = "request_vacay_submit"]').click(function(){
 			
 			var df = $('#vacay_dateFrom').val();
      	var du = $("#vacay_dateUntil").val();
@@ -29,10 +27,10 @@ $(function() {
      	var secondDate = new Date(du);
 
      	var diffDays = Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay));
-			alert('Vacation days wanted'+ diffDays );
+			alert('Vacation days wanted = '+ diffDays );
 		//jQuery.post(diffDays);
 
-  		//jQuery.('name=vacay_sumVacay').val(diffDays);
+
 
   		// this was automatically posting the sumVacay value
   		$("[id='vacay_sumVacay']").val(diffDays);
