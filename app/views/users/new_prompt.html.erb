@@ -7,11 +7,11 @@
 		    :url => url_for(:action => 'set', :controller => 'users'),
 		    :method => 'post' do |f| %>
 
-			<%= f.input :weekPrompt, :label => "Anniversary Prompt", :as => :radio %>
-			<%= f.input :monthPrompt, :label => "One Week anniversary Prompt", :as => :radio %>				
-			<%= f.input :dayPrompt, :label => "One Month anniversary Prompt", :as => :radio %>
-			<%= f.input :maxVacay, :label => "Max Vacation days Prompt", :as => :radio %>					
-			<%= f.input :maxSick, :label => "Max Sick days Prompt", :as => :radio%>
+			<%= f.input :weekPrompt, :label => "One Week before Anniversary Prompt", :as => :radio %>
+			<%= f.input :monthPrompt, :label => "One Month before Anniversary Prompt", :as => :radio %>				
+			<%= f.input :dayPrompt, :label => "The day of Anniversary Prompt", :as => :radio %>
+			<%= f.input :maxVacay, :label => "Surpassed Max Vacation days Prompt", :as => :radio %>					
+			<%= f.input :maxSick, :label => "Surpassed Max Sick days Prompt", :as => :radio%>
 
 
 		<%= f.hidden_field :user_id, :value => @user.id%>
